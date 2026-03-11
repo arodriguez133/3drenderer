@@ -37,7 +37,7 @@ jobs:
           install: mingw-w64-x86_64-gcc mingw-w64-x86_64-SDL2
 
       - name: Build
-        run: cd src && gcc -Wall -std=c99 *.c -lSDL2 -o renderer-windows-x86_64.exe
+        run: cd src && gcc -Wall -std=c99 *.c -lSDL2main -lSDL2 -o renderer-windows-x86_64.exe
 
       # Bundle SDL2.dll so users don't need to install it
       - name: Copy SDL2.dll
