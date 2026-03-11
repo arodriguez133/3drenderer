@@ -1,0 +1,5 @@
+-std=c99
+-Wall
+-I/usr/include/SDL2
+-D_GNU_SOURCE=1
+-D_REENTRANT

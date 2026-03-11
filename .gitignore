@@ -1,0 +1,16 @@
+# Compiled binaries
+src/renderer
+src/renderer.exe
+src/*.o
+
+# Build artifacts
+*.out
+*.a
+*.so
+*.dylib
+
+# Editor / OS
+.vscode/
+.DS_Store
+*.swp
+*.swo
