@@ -59,7 +59,9 @@ jobs:
         run: brew install sdl2
 
       - name: Build
-        run: cd src && gcc -Wall -std=c99 *.c $(sdl2-config --cflags --libs) -o renderer-macos-arm64
+        run: |
+          SDL2_PREFIX=$(brew --prefix sdl2)
+          cd src && gcc -Wall -std=c99 *.c -I"$SDL2_PREFIX/include" -L"$SDL2_PREFIX/lib" -lSDL2 -o renderer-macos-arm64
 
       - uses: actions/upload-artifact@v4
         with:

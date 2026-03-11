@@ -89,7 +89,7 @@ void render(void) {
 }
   
 
-int main(void) {
+int main(int argc, char *argv[]) {
   is_running = initialize_window();
 
   setup();
