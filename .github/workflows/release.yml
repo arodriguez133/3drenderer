@@ -15,7 +15,7 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y libsdl2-dev
 
       - name: Build
-        run: cd src && gcc -Wall -std=c99 *.c -lSDL2 -o renderer-linux-x86_64
+        run: cd src && gcc -Wall -std=c99 *.c -lSDL2 -lm -o renderer-linux-x86_64
 
       - uses: actions/upload-artifact@v4
         with:
