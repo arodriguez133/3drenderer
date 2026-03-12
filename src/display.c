@@ -40,7 +40,7 @@ bool initialize_window(void) {
      return false;
    }
   //TODO: Create an SDL Renderer.
-  renderer = SDL_CreateRenderer(window, -1, 0);
+  renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_PRESENTVSYNC);
   if(!renderer) {
     fprintf(stderr, "Error creating SDL renderer\n");
     return false;
@@ -94,7 +94,7 @@ void draw_rect(int x, int y, int width, int height, uint32_t color) {
   for (int row = y; row < y + height; row++) {
     for (int col = x; col < x + width; col++) {
       //color_buffer[(window_width * row) + col] = color;
-      draw_pixel(x, y, color);
+      draw_pixel(col, row, color);
     }
   }
 }

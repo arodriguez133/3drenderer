@@ -98,6 +98,7 @@ int main(int argc, char *argv[]) {
     process_input();
     update();
     render();
+    SDL_Delay(1);
   }
   destroy_window();
   return 0;
