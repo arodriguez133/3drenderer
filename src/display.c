@@ -14,6 +14,11 @@ uint32_t* color_buffer = NULL;
 SDL_Texture* color_buffer_texture = NULL;
 
 bool initialize_window(void) {
+  // Tell Windows to use the actual native DPI instead of virtualized/scaled
+  // coordinates. Without this, SDL_GetCurrentDisplayMode returns scaled
+  // dimensions and the window is blurry on 4K displays with DPI scaling enabled.
+  SDL_SetHint(SDL_HINT_WINDOWS_DPI_AWARENESS, "permonitorv2");
+
   if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
     fprintf(stderr, "ERROR initializing SDL.\n");
     return false;
@@ -39,8 +44,12 @@ bool initialize_window(void) {
      fprintf(stderr, "Error creating SDL window\n");
      return false;
    }
-  //TODO: Create an SDL Renderer.
-  renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_PRESENTVSYNC);
+  // Use the display index of the window rather than -1 (auto) so SDL picks
+  // the GPU that physically drives the monitor. On multi-GPU systems (e.g.
+  // Intel integrated + discrete), -1 often selects the wrong adapter and
+  // forces a cross-adapter copy through the Windows compositor, causing flicker.
+  int display_index = SDL_GetWindowDisplayIndex(window);
+  renderer = SDL_CreateRenderer(window, display_index, SDL_RENDERER_PRESENTVSYNC);
   if(!renderer) {
     fprintf(stderr, "Error creating SDL renderer\n");
     return false;
