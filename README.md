@@ -2,7 +2,7 @@
 
 A lightweight software 3D renderer written in C using SDL2 for display.
 
-![Demo](docs/demo.gif)
+![Demo](docs/spinning_cube.gif)
 
 ## Features
 
